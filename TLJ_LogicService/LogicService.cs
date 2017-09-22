@@ -30,7 +30,6 @@ namespace TLJ_LogicService
 
             m_serverUtil = new HPServerUtil();
             m_mySqlServerUtil = new MySqlServerUtil();
-
             LogUtil.getInstance().addDebugLog("服务开启");
 
             // 开启TCP服务组件与客户端通信

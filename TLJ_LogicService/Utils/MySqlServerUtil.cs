@@ -118,10 +118,11 @@ public class MySqlServerUtil
         string tag = jo.GetValue("tag").ToString();
         int connId = Convert.ToInt32(jo.GetValue("connId"));
 
-        // 请求登录接口
-        if (tag.CompareTo(TLJCommon.Consts.Tag_Login) == 0)
+        // 请求签到数据接口
+
+        if (tag.CompareTo(TLJCommon.Consts.Tag_GetSignRecord) == 0)
         {
-            NetRespond_Login.onMySqlRespond(connId, str);
+            NetRespond_GetSignRecord.onMySqlRespond(connId, str);
         }
         // 请求快速注册接口
         else if (tag.CompareTo(TLJCommon.Consts.Tag_QuickRegister) == 0)

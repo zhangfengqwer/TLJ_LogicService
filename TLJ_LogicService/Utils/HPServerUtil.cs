@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using TLJCommon;
 
 public class HPServerUtil
 {
@@ -205,20 +206,25 @@ public class HPServerUtil
 
         if (jo.GetValue("tag") != null)
         {
+            // 请求签到数据接口
             string tag = jo.GetValue("tag").ToString();
+            if (Consts.Tag_GetSignRecord.Equals(tag))
+            {
+                NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId, text);
+            }
 
             // 请求登录接口
-            if (tag.CompareTo(TLJCommon.Consts.Tag_Login) == 0)
+            if (tag.CompareTo(Consts.Tag_Login) == 0)
             {
-                NetRespond_Login.doAskCilentReq_Login(receiveObj.m_connId,text);
+                NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId,text);
             }
             // 请求快速注册接口
-            else if (tag.CompareTo(TLJCommon.Consts.Tag_QuickRegister) == 0)
+            else if (tag.CompareTo(Consts.Tag_QuickRegister) == 0)
             {
                 NetRespond_QuickRegister.doAskCilentReq_QuickRegister(receiveObj.m_connId, text);
             }
             // 请求服务器在线玩家信息接口
-            else if (tag.CompareTo(TLJCommon.Consts.Tag_OnlineInfo) == 0)
+            else if (tag.CompareTo(Consts.Tag_OnlineInfo) == 0)
             {
                 NetRespond_OnlineInfo.doAskCilentReq_OnlineInfo(receiveObj.m_connId, text);
             }
