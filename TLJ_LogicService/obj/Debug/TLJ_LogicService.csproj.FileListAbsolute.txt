@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.ProjectInstaller.resources
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.pdb
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\HPSocketCS.dll
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJCommon.dll
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.exe
+C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.pdb
