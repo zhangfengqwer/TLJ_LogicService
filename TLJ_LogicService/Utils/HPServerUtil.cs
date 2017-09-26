@@ -206,15 +206,20 @@ public class HPServerUtil
 
         if (jo.GetValue("tag") != null)
         {
-            // 请求签到数据接口
+            
             string tag = jo.GetValue("tag").ToString();
+            // 请求签到数据接口
             if (Consts.Tag_GetSignRecord.Equals(tag))
             {
                 NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId, text);
             }
-
+            //签到接口
+            else if (Consts.Tag_Sign.Equals(tag))
+            {
+                NetRespond_Sign.doAskCilentReq_Sign(receiveObj.m_connId, text);
+            }
             // 请求登录接口
-            if (tag.CompareTo(Consts.Tag_Login) == 0)
+             else if (tag.CompareTo(Consts.Tag_Login) == 0)
             {
                 NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId,text);
             }

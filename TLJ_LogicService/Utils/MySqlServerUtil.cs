@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using TLJCommon;
 
 public class MySqlServerUtil
 {
@@ -120,16 +121,20 @@ public class MySqlServerUtil
 
         // 请求签到数据接口
 
-        if (tag.CompareTo(TLJCommon.Consts.Tag_GetSignRecord) == 0)
+        if (Consts.Tag_GetSignRecord.Equals(tag))
         {
             NetRespond_GetSignRecord.onMySqlRespond(connId, str);
+        }
+        //签到接口
+        else if(Consts.Tag_Sign.Equals(tag))
+        {
+            NetRespond_Sign.onMySqlRespond(connId, str);
         }
         // 请求快速注册接口
         else if (tag.CompareTo(TLJCommon.Consts.Tag_QuickRegister) == 0)
         {
             NetRespond_QuickRegister.onMySqlRespond(connId,str);
         }
-
 
         return HandleResult.Ok;
     }

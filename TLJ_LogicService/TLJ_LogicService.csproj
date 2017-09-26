@@ -49,11 +49,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
+    <Reference Include="TLJCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\TLJCommon.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commons\CommonUtil.cs" />
     <Compile Include="Commons\NetConfig.cs" />
-    <Compile Include="NetResponds\NetRespond_Login.cs" />
+    <Compile Include="NetResponds\NetRespond_Sign.cs" />
+    <Compile Include="NetResponds\NetRespond_GetSignRecord.cs" />
     <Compile Include="NetResponds\NetRespond_OnlineInfo.cs" />
     <Compile Include="NetResponds\NetRespond_QuickRegister.cs" />
     <Compile Include="ProjectInstaller.cs">
