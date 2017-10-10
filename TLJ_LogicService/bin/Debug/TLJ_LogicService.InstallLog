@@ -90,3 +90,25 @@
    logtoconsole = 
    logfile = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.InstallLog
    assemblypath = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe
+正在卸载程序集“C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe
+正在移除 EventLog 源 TLJ_LogicService。
+正在从系统中移除服务 TLJ_LogicService...
+已成功地从系统中移除服务 TLJ_LogicService。
+尝试停止服务 TLJ_LogicService。
+正在安装程序集“C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe
+正在安装服务 TLJ_LogicService...
+已成功安装服务 TLJ_LogicService。
+正在日志 Application 中创建 EventLog 源 TLJ_LogicService...
+正在提交程序集“C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe”。
+受影响的参数是:
+   logtoconsole = 
+   logfile = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.InstallLog
+   assemblypath = C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe

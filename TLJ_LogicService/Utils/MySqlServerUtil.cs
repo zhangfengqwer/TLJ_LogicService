@@ -120,7 +120,6 @@ public class MySqlServerUtil
         int connId = Convert.ToInt32(jo.GetValue("connId"));
 
         // 请求签到数据接口
-
         if (Consts.Tag_GetSignRecord.Equals(tag))
         {
             NetRespond_GetSignRecord.onMySqlRespond(connId, str);
@@ -129,11 +128,6 @@ public class MySqlServerUtil
         else if(Consts.Tag_Sign.Equals(tag))
         {
             NetRespond_Sign.onMySqlRespond(connId, str);
-        }
-        // 请求快速注册接口
-        else if (tag.CompareTo(TLJCommon.Consts.Tag_QuickRegister) == 0)
-        {
-            NetRespond_QuickRegister.onMySqlRespond(connId,str);
         }
 
         return HandleResult.Ok;
