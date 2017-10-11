@@ -208,30 +208,30 @@ public class HPServerUtil
         {
             
             string tag = jo.GetValue("tag").ToString();
-            // 请求签到数据接口
-            if (Consts.Tag_GetSignRecord.Equals(tag))
+            // 请求签到数据
+            if (tag.CompareTo(Consts.Tag_GetSignRecord) == 0)
             {
                 NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId, text);
             }
-            //签到接口
-            else if (Consts.Tag_Sign.Equals(tag))
+            //签到
+            else if (tag.CompareTo(Consts.Tag_Sign) == 0)
             {
                 NetRespond_Sign.doAskCilentReq_Sign(receiveObj.m_connId, text);
             }
-            // 请求登录接口
-             else if (tag.CompareTo(Consts.Tag_Login) == 0)
-            {
-                NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId,text);
-            }
-            // 请求快速注册接口
-            else if (tag.CompareTo(Consts.Tag_QuickRegister) == 0)
-            {
-                NetRespond_QuickRegister.doAskCilentReq_QuickRegister(receiveObj.m_connId, text);
-            }
-            // 请求服务器在线玩家信息接口
+            // 请求服务器在线玩家信息
             else if (tag.CompareTo(Consts.Tag_OnlineInfo) == 0)
             {
                 NetRespond_OnlineInfo.doAskCilentReq_OnlineInfo(receiveObj.m_connId, text);
+            }
+            // 获取用户信息
+            else if (tag.CompareTo(Consts.Tag_UserInfo) == 0)
+            {
+                NetRespond_UserInfo.doAskCilentReq_UserInfo(receiveObj.m_connId, text);
+            }
+            // 获取用户邮箱数据
+            else if (tag.CompareTo(Consts.Tag_GetMail) == 0)
+            {
+                NetRespond_GetMail.doAskCilentReq_GetMail(receiveObj.m_connId, text);
             }
         }
         else

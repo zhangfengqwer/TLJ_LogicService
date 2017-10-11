@@ -9,3 +9,13 @@ C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJCo
 C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.exe
 C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.pdb
 C:\Users\Administrator\Desktop\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.csproj.CoreCompileInputs.cache
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.exe
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJ_LogicService.pdb
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\bin\Debug\HPSocketCS.dll
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\bin\Debug\TLJCommon.dll
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.csprojResolveAssemblyReference.cache
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.ProjectInstaller.resources
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.csproj.GenerateResource.Cache
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.exe
+E:\GitHub\TLJ_LogicService\TLJ_LogicService\obj\Debug\TLJ_LogicService.pdb

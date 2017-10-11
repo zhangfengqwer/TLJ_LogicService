@@ -120,14 +120,24 @@ public class MySqlServerUtil
         int connId = Convert.ToInt32(jo.GetValue("connId"));
 
         // 请求签到数据接口
-        if (Consts.Tag_GetSignRecord.Equals(tag))
+        if (tag.CompareTo(Consts.Tag_GetSignRecord) == 0)
         {
             NetRespond_GetSignRecord.onMySqlRespond(connId, str);
         }
-        //签到接口
-        else if(Consts.Tag_Sign.Equals(tag))
+        // 签到接口
+        else if(tag.CompareTo(Consts.Tag_Sign) == 0)
         {
             NetRespond_Sign.onMySqlRespond(connId, str);
+        }
+        // 获取用户信息接口
+        else if (tag.CompareTo(Consts.Tag_UserInfo) == 0)
+        {
+            NetRespond_UserInfo.onMySqlRespond(connId, str);
+        }
+        // 获取用户邮箱数据
+        else if (tag.CompareTo(Consts.Tag_GetMail) == 0)
+        {
+            NetRespond_GetMail.onMySqlRespond(connId, str);
         }
 
         return HandleResult.Ok;
