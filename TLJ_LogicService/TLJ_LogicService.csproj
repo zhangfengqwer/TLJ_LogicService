@@ -57,11 +57,14 @@
   <ItemGroup>
     <Compile Include="Commons\CommonUtil.cs" />
     <Compile Include="Commons\NetConfig.cs" />
+    <Compile Include="NetResponds\NetRespond_DeleteMail.cs" />
     <Compile Include="NetResponds\NetRespond_GetMail.cs" />
+    <Compile Include="NetResponds\NetRespond_OneKeyDeleteMail.cs" />
+    <Compile Include="NetResponds\NetRespond_OneKeyReadMail.cs" />
+    <Compile Include="NetResponds\NetRespond_ReadMail.cs" />
     <Compile Include="NetResponds\NetRespond_Sign.cs" />
     <Compile Include="NetResponds\NetRespond_GetSignRecord.cs" />
     <Compile Include="NetResponds\NetRespond_OnlineInfo.cs" />
-    <Compile Include="NetResponds\NetRespond_QuickRegister.cs" />
     <Compile Include="NetResponds\NetRespond_UserInfo.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

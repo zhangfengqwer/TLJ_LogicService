@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-class NetRespond_GetMail
+class NetRespond_DeleteMail
 {
-    public static string doAskCilentReq_GetMail(IntPtr connId, string reqData)
+    public static string doAskCilentReq_DeleteMail(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -26,6 +26,7 @@ class NetRespond_GetMail
                 temp.Add("connId", connId.ToInt32());
 
                 temp.Add("uid", uid);
+                temp.Add("email_id", (int)jo.GetValue("email_id"));
 
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
                 {
@@ -47,7 +48,7 @@ class NetRespond_GetMail
             // 发送给客户端
             LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
         }
-        
+
         return "";
     }
 

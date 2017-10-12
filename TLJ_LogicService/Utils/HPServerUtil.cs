@@ -13,8 +13,10 @@ public class HPServerUtil
 {
     //TcpPackServer m_tcpServer = new TcpPackServer();
     TcpServer m_tcpServer = new TcpServer();
-
+    
+    // 数据包尾部标识
     char m_packEndFlag = (char)1;
+    string m_endStr = "";
 
     int m_onlineCount = 0;
 
@@ -152,9 +154,45 @@ public class HPServerUtil
 
     HandleResult OnReceive(IntPtr connId, byte[] bytes)
     {
-        ReceiveObj obj = new ReceiveObj(connId, bytes);
-        Thread thread = new Thread(doAskCilentReq);
-        thread.Start(obj);
+        try
+        {
+            string text = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+            LogUtil.getInstance().addDebugLog("收到客户端原始消息：" + text);
+            {
+                text = m_endStr + text;
+                text = text.Replace("\r\n", "");
+
+                List<string> list = new List<string>();
+                bool b = CommonUtil.splitStrIsPerfect(text, list, m_packEndFlag);
+
+                if (b)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        ReceiveObj obj = new ReceiveObj(connId, list[i]);
+                        Thread thread = new Thread(doAskCilentReq);
+                        thread.Start(obj);
+                    }
+
+                    text = "";
+                }
+                else
+                {
+                    for (int i = 0; i < list.Count - 1; i++)
+                    {
+                        ReceiveObj obj = new ReceiveObj(connId, list[i]);
+                        Thread thread = new Thread(doAskCilentReq);
+                        thread.Start(obj);
+                    }
+
+                    m_endStr = list[list.Count - 1];
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            LogUtil.getInstance().addErrorLog("OnReceive:" + ex.Message);
+        }
 
         return HandleResult.Ok;
     }
@@ -184,61 +222,88 @@ public class HPServerUtil
     // 处理客户端的请求
     void doAskCilentReq(object obj)
     {
-        // 模拟耗时操作，比如数据库操作，IO操作
-        // Thread.Sleep(3000);
-
-        ReceiveObj receiveObj = (ReceiveObj)obj;
-        string text = Encoding.UTF8.GetString(receiveObj.m_bytes, 0, receiveObj.m_bytes.Length);
-
-        LogUtil.getInstance().addDebugLog("收到客户端消息：" + text);
-
-        JObject jo;
         try
         {
-            jo = JObject.Parse(text);
-        }
-        catch (JsonReaderException ex)
-        {
-            // 传过来的数据不是json格式的，一律不理
-            LogUtil.getInstance().addDebugLog("客户端传来非json数据：" + text);
-            return;
-        }
+            // 模拟耗时操作，比如数据库操作，IO操作
+            // Thread.Sleep(3000);
 
-        if (jo.GetValue("tag") != null)
-        {
-            
-            string tag = jo.GetValue("tag").ToString();
-            // 请求签到数据
-            if (tag.CompareTo(Consts.Tag_GetSignRecord) == 0)
+            ReceiveObj receiveObj = (ReceiveObj)obj;
+            string text = receiveObj.m_data;
+
+            LogUtil.getInstance().addDebugLog("收到客户端消息：" + text);
+
+            JObject jo;
+            try
             {
-                NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId, text);
+                jo = JObject.Parse(text);
             }
-            //签到
-            else if (tag.CompareTo(Consts.Tag_Sign) == 0)
+            catch (JsonReaderException ex)
             {
-                NetRespond_Sign.doAskCilentReq_Sign(receiveObj.m_connId, text);
+                // 传过来的数据不是json格式的，一律不理
+                LogUtil.getInstance().addDebugLog("客户端传来非json数据：" + text);
+                return;
             }
-            // 请求服务器在线玩家信息
-            else if (tag.CompareTo(Consts.Tag_OnlineInfo) == 0)
+
+            if (jo.GetValue("tag") != null)
             {
-                NetRespond_OnlineInfo.doAskCilentReq_OnlineInfo(receiveObj.m_connId, text);
+                string tag = jo.GetValue("tag").ToString();
+
+                // 请求签到数据
+                if (tag.CompareTo(Consts.Tag_GetSignRecord) == 0)
+                {
+                    NetRespond_GetSignRecord.doAskCilentReq_GetSignRecord(receiveObj.m_connId, text);
+                }
+                //签到
+                else if (tag.CompareTo(Consts.Tag_Sign) == 0)
+                {
+                    NetRespond_Sign.doAskCilentReq_Sign(receiveObj.m_connId, text);
+                }
+                // 请求服务器在线玩家信息
+                else if (tag.CompareTo(Consts.Tag_OnlineInfo) == 0)
+                {
+                    NetRespond_OnlineInfo.doAskCilentReq_OnlineInfo(receiveObj.m_connId, text);
+                }
+                // 获取用户信息
+                else if (tag.CompareTo(Consts.Tag_UserInfo) == 0)
+                {
+                    NetRespond_UserInfo.doAskCilentReq_UserInfo(receiveObj.m_connId, text);
+                }
+                // 获取用户邮箱数据
+                else if (tag.CompareTo(Consts.Tag_GetMail) == 0)
+                {
+                    NetRespond_GetMail.doAskCilentReq_GetMail(receiveObj.m_connId, text);
+                }
+                // 阅读邮件
+                else if (tag.CompareTo(Consts.Tag_ReadMail) == 0)
+                {
+                    NetRespond_ReadMail.doAskCilentReq_ReadMail(receiveObj.m_connId, text);
+                }
+                // 删除邮件
+                else if (tag.CompareTo(Consts.Tag_DeleteMail) == 0)
+                {
+                    NetRespond_DeleteMail.doAskCilentReq_DeleteMail(receiveObj.m_connId, text);
+                }
+                // 一键读取所有邮件
+                else if (tag.CompareTo(Consts.Tag_OneKeyReadMail) == 0)
+                {
+                    NetRespond_OneKeyReadMail.doAskCilentReq_OneKeyReadMail(receiveObj.m_connId, text);
+                }
+                // 一键删除所有邮件
+                else if (tag.CompareTo(Consts.Tag_OneKeyDeleteMail) == 0)
+                {
+                    NetRespond_OneKeyDeleteMail.doAskCilentReq_OneKeyDeleteMail(receiveObj.m_connId, text);
+                }
             }
-            // 获取用户信息
-            else if (tag.CompareTo(Consts.Tag_UserInfo) == 0)
+            else
             {
-                NetRespond_UserInfo.doAskCilentReq_UserInfo(receiveObj.m_connId, text);
-            }
-            // 获取用户邮箱数据
-            else if (tag.CompareTo(Consts.Tag_GetMail) == 0)
-            {
-                NetRespond_GetMail.doAskCilentReq_GetMail(receiveObj.m_connId, text);
+                // 传过来的数据没有tag字段的，一律不理
+                LogUtil.getInstance().addDebugLog("客户端传来的数据没有Tag：" + text);
+                return;
             }
         }
-        else
+        catch (Exception ex)
         {
-            // 传过来的数据没有tag字段的，一律不理
-            LogUtil.getInstance().addDebugLog("客户端传来的数据没有Tag：" + text);
-            return;
+            LogUtil.getInstance().addErrorLog("doAskCilentReq:" + ex.Message);
         }
     }
 }
@@ -246,11 +311,11 @@ public class HPServerUtil
 class ReceiveObj
 {
     public IntPtr m_connId;
-    public byte[] m_bytes;
+    public string m_data = "";
 
-    public ReceiveObj(IntPtr connId, byte[] bytes)
+    public ReceiveObj(IntPtr connId, string data)
     {
         m_connId = connId;
-        m_bytes = bytes;
+        m_data = data;
     }
 };

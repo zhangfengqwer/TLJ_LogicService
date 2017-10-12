@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-class NetRespond_GetMail
+class NetRespond_OneKeyReadMail
 {
-    public static string doAskCilentReq_GetMail(IntPtr connId, string reqData)
+    public static string doAskCilentReq_OneKeyReadMail(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -47,7 +47,7 @@ class NetRespond_GetMail
             // 发送给客户端
             LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
         }
-        
+
         return "";
     }
 

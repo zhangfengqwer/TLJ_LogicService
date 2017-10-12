@@ -139,6 +139,26 @@ public class MySqlServerUtil
         {
             NetRespond_GetMail.onMySqlRespond(connId, str);
         }
+        // 阅读邮件
+        else if (tag.CompareTo(Consts.Tag_ReadMail) == 0)
+        {
+            NetRespond_ReadMail.onMySqlRespond(connId, str);
+        }
+        // 删除邮件
+        else if (tag.CompareTo(Consts.Tag_DeleteMail) == 0)
+        {
+            NetRespond_DeleteMail.onMySqlRespond(connId, str);
+        }
+        // 一键读取所有邮件
+        else if (tag.CompareTo(Consts.Tag_OneKeyReadMail) == 0)
+        {
+            NetRespond_OneKeyReadMail.onMySqlRespond(connId, str);
+        }
+        // 一键删除所有邮件
+        else if (tag.CompareTo(Consts.Tag_OneKeyDeleteMail) == 0)
+        {
+            NetRespond_OneKeyDeleteMail.onMySqlRespond(connId, str);
+        }
 
         return HandleResult.Ok;
     }
