@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-
-class NetRespond_UserInfo
+class NetRespond_UseProp
 {
-    public static string doAskCilentReq_UserInfo(IntPtr connId, string reqData)
+    public static string doAskCilentReq_UseProp(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -27,6 +26,7 @@ class NetRespond_UserInfo
                 temp.Add("connId", connId.ToInt32());
 
                 temp.Add("uid", uid);
+                temp.Add("prop_id", (int)jo.GetValue("prop_id"));
 
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
                 {

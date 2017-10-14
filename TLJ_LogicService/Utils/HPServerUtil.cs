@@ -293,6 +293,50 @@ public class HPServerUtil
                 {
                     NetRespond_OneKeyDeleteMail.doAskCilentReq_OneKeyDeleteMail(receiveObj.m_connId, text);
                 }
+                // 获取背包数据
+                else if (tag.CompareTo(Consts.Tag_GetBag) == 0)
+                {
+                    NetRespond_GetBag.doAskCilentReq_GetBag(receiveObj.m_connId, text);
+                }
+                // 使用道具
+                else if (tag.CompareTo(Consts.Tag_UseProp) == 0)
+                {
+                    NetRespond_UseProp.doAskCilentReq_UseProp(receiveObj.m_connId, text);
+                }
+                // 获取公告活动数据
+                else if (tag.CompareTo(Consts.Tag_GetNotice) == 0)
+                {
+                    NetRespond_GetNotice.doAskCilentReq_GetNotice(receiveObj.m_connId, text);
+                }
+                // 阅读公告活动
+                else if (tag.CompareTo(Consts.Tag_ReadNotice) == 0)
+                {
+                    NetRespond_ReadNotice.doAskCilentReq_ReadNotice(receiveObj.m_connId, text);
+                }
+                // 获取商店数据
+                else if (tag.CompareTo(Consts.Tag_GetShop) == 0)
+                {
+                    NetRespond_GetShop.doAskCilentReq_GetShop(receiveObj.m_connId, text);
+                }
+                // 购买物品
+                else if (tag.CompareTo(Consts.Tag_BuyGoods) == 0)
+                {
+                    NetRespond_BuyGoods.doAskCilentReq_BuyGoods(receiveObj.m_connId, text);
+                }
+                // 获取任务数据
+                else if (tag.CompareTo(Consts.Tag_GetTask) == 0)
+                {
+                    NetRespond_GetTask.doAskCilentReq_GetTask(receiveObj.m_connId, text);
+                }
+                // 完成任务
+                else if (tag.CompareTo(Consts.Tag_CompleteTask) == 0)
+                {
+                    NetRespond_CompleteTask.doAskCilentReq_CompleteTask(receiveObj.m_connId, text);
+                }
+                else
+                {
+                    LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
+                }
             }
             else
             {

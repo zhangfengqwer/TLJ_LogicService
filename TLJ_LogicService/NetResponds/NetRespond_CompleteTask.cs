@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-
-class NetRespond_UserInfo
+class NetRespond_CompleteTask
 {
-    public static string doAskCilentReq_UserInfo(IntPtr connId, string reqData)
+    public static string doAskCilentReq_CompleteTask(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -27,6 +26,7 @@ class NetRespond_UserInfo
                 temp.Add("connId", connId.ToInt32());
 
                 temp.Add("uid", uid);
+                temp.Add("task_id", (int)jo.GetValue("task_id"));
 
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
                 {
@@ -48,8 +48,7 @@ class NetRespond_UserInfo
             // 发送给客户端
             LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
         }
-
-        //return respondJO.ToString();
+        
         return "";
     }
 
@@ -65,12 +64,6 @@ class NetRespond_UserInfo
         catch (Exception ex)
         {
             LogUtil.getInstance().addDebugLog(ex.Message);
-
-            // 客户端参数错误
-            //respondJO.Add("code", Convert.ToInt32(TLJCommon.Consts.Code.Code_ParamError));
-
-            // 发送给客户端
-            //LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
         }
     }
 }

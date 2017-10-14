@@ -58,6 +58,14 @@
     <Compile Include="Commons\CommonUtil.cs" />
     <Compile Include="Commons\NetConfig.cs" />
     <Compile Include="NetResponds\NetRespond_DeleteMail.cs" />
+    <Compile Include="NetResponds\NetRespond_GetTask.cs" />
+    <Compile Include="NetResponds\NetRespond_GetShop.cs" />
+    <Compile Include="NetResponds\NetRespond_GetNotice.cs" />
+    <Compile Include="NetResponds\NetRespond_BuyGoods.cs" />
+    <Compile Include="NetResponds\NetRespond_CompleteTask.cs" />
+    <Compile Include="NetResponds\NetRespond_ReadNotice.cs" />
+    <Compile Include="NetResponds\NetRespond_UseProp.cs" />
+    <Compile Include="NetResponds\NetRespond_GetBag.cs" />
     <Compile Include="NetResponds\NetRespond_GetMail.cs" />
     <Compile Include="NetResponds\NetRespond_OneKeyDeleteMail.cs" />
     <Compile Include="NetResponds\NetRespond_OneKeyReadMail.cs" />

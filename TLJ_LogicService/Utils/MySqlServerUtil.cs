@@ -159,6 +159,50 @@ public class MySqlServerUtil
         {
             NetRespond_OneKeyDeleteMail.onMySqlRespond(connId, str);
         }
+        // 获取背包数据
+        else if (tag.CompareTo(Consts.Tag_GetBag) == 0)
+        {
+            NetRespond_GetBag.onMySqlRespond(connId, str);
+        }
+        // 使用道具
+        else if (tag.CompareTo(Consts.Tag_UseProp) == 0)
+        {
+            NetRespond_UseProp.onMySqlRespond(connId, str);
+        }
+        // 获取公告活动数据
+        else if (tag.CompareTo(Consts.Tag_GetNotice) == 0)
+        {
+            NetRespond_GetNotice.onMySqlRespond(connId, str);
+        }
+        // 阅读公告活动
+        else if (tag.CompareTo(Consts.Tag_ReadNotice) == 0)
+        {
+            NetRespond_ReadNotice.onMySqlRespond(connId, str);
+        }
+        // 获取商店数据
+        else if (tag.CompareTo(Consts.Tag_GetShop) == 0)
+        {
+            NetRespond_GetShop.onMySqlRespond(connId, str);
+        }
+        // 购买物品
+        else if (tag.CompareTo(Consts.Tag_BuyGoods) == 0)
+        {
+            NetRespond_BuyGoods.onMySqlRespond(connId, str);
+        }
+        // 获取任务数据
+        else if (tag.CompareTo(Consts.Tag_GetTask) == 0)
+        {
+            NetRespond_GetTask.onMySqlRespond(connId, str);
+        }
+        // 完成任务
+        else if (tag.CompareTo(Consts.Tag_CompleteTask) == 0)
+        {
+            NetRespond_CompleteTask.onMySqlRespond(connId, str);
+        }
+        else
+        {
+            LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
+        }
 
         return HandleResult.Ok;
     }

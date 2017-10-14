@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-
-class NetRespond_UserInfo
+class NetRespond_GetTask
 {
-    public static string doAskCilentReq_UserInfo(IntPtr connId, string reqData)
+    public static string doAskCilentReq_GetTask(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
