@@ -64,6 +64,7 @@
     <Compile Include="NetResponds\NetRespond_BuyGoods.cs" />
     <Compile Include="NetResponds\NetRespond_CompleteTask.cs" />
     <Compile Include="NetResponds\NetRespond_ReadNotice.cs" />
+    <Compile Include="NetResponds\NetRespond_UseLaBa.cs" />
     <Compile Include="NetResponds\NetRespond_UseProp.cs" />
     <Compile Include="NetResponds\NetRespond_GetBag.cs" />
     <Compile Include="NetResponds\NetRespond_GetMail.cs" />

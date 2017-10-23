@@ -19,6 +19,7 @@ public class HPServerUtil
     string m_endStr = "";
 
     int m_onlineCount = 0;
+    List<IntPtr> m_allIntPtr = new List<IntPtr>();
 
     public HPServerUtil()
     {
@@ -43,6 +44,11 @@ public class HPServerUtil
     public int getOnlineCount()
     {
         return m_onlineCount;
+    }
+
+    public List<IntPtr> getAllIntPtr()
+    {
+        return m_allIntPtr;
     }
 
     // 启动服务
@@ -108,6 +114,7 @@ public class HPServerUtil
     HandleResult OnAccept(IntPtr connId, IntPtr pClient)
     {
         ++m_onlineCount;
+        m_allIntPtr.Add(connId);
 
         // 获取客户端ip和端口
         string ip = string.Empty;
@@ -202,6 +209,7 @@ public class HPServerUtil
         if (m_onlineCount > 0)
         {
             --m_onlineCount;
+            m_allIntPtr.Remove(connId);
         }
 
         LogUtil.getInstance().addDebugLog("与客户端断开:" + connId);
@@ -332,6 +340,11 @@ public class HPServerUtil
                 else if (tag.CompareTo(Consts.Tag_CompleteTask) == 0)
                 {
                     NetRespond_CompleteTask.doAskCilentReq_CompleteTask(receiveObj.m_connId, text);
+                }
+                // 使用喇叭
+                else if (tag.CompareTo(Consts.Tag_UseLaBa) == 0)
+                {
+                    NetRespond_UseLaBa.doAskCilentReq_UseLaBa(receiveObj.m_connId, text);
                 }
                 else
                 {

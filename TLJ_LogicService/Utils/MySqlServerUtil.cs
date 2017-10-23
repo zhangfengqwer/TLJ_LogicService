@@ -199,6 +199,11 @@ public class MySqlServerUtil
         {
             NetRespond_CompleteTask.onMySqlRespond(connId, str);
         }
+        // 使用喇叭
+        else if (tag.CompareTo(Consts.Tag_UseLaBa) == 0)
+        {
+            NetRespond_UseLaBa.onMySqlRespond(connId, str);
+        }
         else
         {
             LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
