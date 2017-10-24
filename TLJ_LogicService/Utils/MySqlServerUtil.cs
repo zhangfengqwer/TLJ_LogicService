@@ -204,6 +204,21 @@ public class MySqlServerUtil
         {
             NetRespond_UseLaBa.onMySqlRespond(connId, str);
         }
+        // 实名认证
+        else if (tag.CompareTo(Consts.Tag_RealName) == 0)
+        {
+            NetRespond_RealName.onMySqlRespond(connId, str);
+        }
+        // 发送验证码
+        else if (tag.CompareTo(Consts.Tag_SendSMS) == 0)
+        {
+            NetRespond_SendSMS.onMySqlRespond(connId, str);
+        }
+        // 校验验证码
+        else if (tag.CompareTo(Consts.Tag_CheckSMS) == 0)
+        {
+            NetRespond_CheckSMS.onMySqlRespond(connId, str);
+        }
         else
         {
             LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

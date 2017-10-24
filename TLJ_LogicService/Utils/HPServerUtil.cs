@@ -346,6 +346,21 @@ public class HPServerUtil
                 {
                     NetRespond_UseLaBa.doAskCilentReq_UseLaBa(receiveObj.m_connId, text);
                 }
+                // 实名认证
+                else if (tag.CompareTo(Consts.Tag_RealName) == 0)
+                {
+                    NetRespond_RealName.doAskCilentReq_RealName(receiveObj.m_connId, text);
+                }
+                // 发送验证码
+                else if (tag.CompareTo(Consts.Tag_SendSMS) == 0)
+                {
+                    NetRespond_SendSMS.doAskCilentReq_SendSMS(receiveObj.m_connId, text);
+                }
+                // 校验验证码
+                else if (tag.CompareTo(Consts.Tag_CheckSMS) == 0)
+                {
+                    NetRespond_CheckSMS.doAskCilentReq_CheckSMS(receiveObj.m_connId, text);
+                }
                 else
                 {
                     LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
