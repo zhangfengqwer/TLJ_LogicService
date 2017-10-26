@@ -219,6 +219,11 @@ public class MySqlServerUtil
         {
             NetRespond_CheckSMS.onMySqlRespond(connId, str);
         }
+        // 获取pvp场次数据
+        else if (tag.CompareTo(Consts.Tag_GetPVPGameRoom) == 0)
+        {
+            NetRespond_GetPVPGameRoom.onMySqlRespond(connId, str);
+        }
         else
         {
             LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

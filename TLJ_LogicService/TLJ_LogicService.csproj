@@ -59,6 +59,7 @@
     <Compile Include="Commons\NetConfig.cs" />
     <Compile Include="NetResponds\NetRespond_DeleteMail.cs" />
     <Compile Include="NetResponds\NetRespond_CheckSMS.cs" />
+    <Compile Include="NetResponds\NetRespond_GetPVPGameRoom.cs" />
     <Compile Include="NetResponds\NetRespond_SendSMS.cs" />
     <Compile Include="NetResponds\NetRespond_RealName.cs" />
     <Compile Include="NetResponds\NetRespond_GetTask.cs" />

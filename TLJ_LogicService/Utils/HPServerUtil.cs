@@ -181,7 +181,8 @@ public class HPServerUtil
                         thread.Start(obj);
                     }
 
-                    text = "";
+                    //text = "";
+                    m_endStr = "";
                 }
                 else
                 {
@@ -249,6 +250,9 @@ public class HPServerUtil
             {
                 // 传过来的数据不是json格式的，一律不理
                 LogUtil.getInstance().addDebugLog("客户端传来非json数据：" + text);
+
+                m_endStr = "";
+
                 return;
             }
 
@@ -360,6 +364,11 @@ public class HPServerUtil
                 else if (tag.CompareTo(Consts.Tag_CheckSMS) == 0)
                 {
                     NetRespond_CheckSMS.doAskCilentReq_CheckSMS(receiveObj.m_connId, text);
+                }
+                // 获取pvp场次数据
+                else if (tag.CompareTo(Consts.Tag_GetPVPGameRoom) == 0)
+                {
+                    NetRespond_GetPVPGameRoom.doAskCilentReq_GetPVPGameRoom(receiveObj.m_connId, text);
                 }
                 else
                 {
