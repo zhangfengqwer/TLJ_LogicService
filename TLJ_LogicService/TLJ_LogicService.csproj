@@ -59,6 +59,7 @@
     <Compile Include="Commons\NetConfig.cs" />
     <Compile Include="NetResponds\NetRespond_DeleteMail.cs" />
     <Compile Include="NetResponds\NetRespond_CheckSMS.cs" />
+    <Compile Include="NetResponds\NetRespond_GetRank.cs" />
     <Compile Include="NetResponds\NetRespond_GetPVPGameRoom.cs" />
     <Compile Include="NetResponds\NetRespond_SendSMS.cs" />
     <Compile Include="NetResponds\NetRespond_RealName.cs" />
@@ -93,6 +94,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\Request_SendMailToUser.cs" />
     <Compile Include="Utils\HPServerUtil.cs" />
     <Compile Include="Utils\LogUtil.cs" />
     <Compile Include="Utils\MySqlServerUtil.cs" />

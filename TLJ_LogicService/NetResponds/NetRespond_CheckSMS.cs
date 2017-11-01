@@ -58,6 +58,18 @@ class NetRespond_CheckSMS
     {
         try
         {
+            {
+                JObject jo = JObject.Parse(respondData);
+                int code = int.Parse(jo.GetValue("code").ToString());
+                string uid = jo.GetValue("uid").ToString();
+
+                // 绑定手机号成功，奖励金币2000
+                if (code == (int)TLJCommon.Consts.Code.Code_OK)
+                {
+                    Request_SendMailToUser.doRequest(uid, "绑定手机号", "恭喜您成功绑定手机号，奖励金币2000", "1:2000");
+                }
+            }
+
             // 发送给客户端
             {
                 LogicService.m_serverUtil.sendMessage((IntPtr)connId, respondData);

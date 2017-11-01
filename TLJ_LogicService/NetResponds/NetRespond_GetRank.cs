@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-class NetRespond_RealName
+class NetRespond_GetRank
 {
-    public static string doAskCilentReq_RealName(IntPtr connId, string reqData)
+    public static string doAskCilentReq_GetRank(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -26,8 +26,6 @@ class NetRespond_RealName
                 temp.Add("connId", connId.ToInt32());
 
                 temp.Add("uid", uid);
-                temp.Add("realName", jo.GetValue("realName").ToString());
-                temp.Add("identification", jo.GetValue("identification").ToString());
 
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
                 {
@@ -58,18 +56,6 @@ class NetRespond_RealName
     {
         try
         {
-            {
-                JObject jo = JObject.Parse(respondData);
-                int code = int.Parse(jo.GetValue("code").ToString());
-                string uid = jo.GetValue("uid").ToString();
-
-                // 实名认证成功，奖励金币2000
-                if (code == (int)TLJCommon.Consts.Code.Code_OK)
-                {
-                    Request_SendMailToUser.doRequest(uid, "实名认证", "恭喜您完成实名认证，奖励金币2000", "1:2000");
-                }
-            }
-
             // 发送给客户端
             {
                 LogicService.m_serverUtil.sendMessage((IntPtr)connId, respondData);

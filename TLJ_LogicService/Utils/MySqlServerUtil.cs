@@ -224,6 +224,11 @@ public class MySqlServerUtil
         {
             NetRespond_GetPVPGameRoom.onMySqlRespond(connId, str);
         }
+        // 获取排行榜数据
+        else if (tag.CompareTo(Consts.Tag_GetRank) == 0)
+        {
+            NetRespond_GetRank.onMySqlRespond(connId, str);
+        }
         else
         {
             LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

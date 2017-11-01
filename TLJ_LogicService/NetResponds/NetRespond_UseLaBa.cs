@@ -26,7 +26,7 @@ class NetRespond_UseLaBa
                 temp.Add("connId", connId.ToInt32());
 
                 temp.Add("uid", uid);
-                temp.Add("text", (int)jo.GetValue("text"));
+                temp.Add("text", jo.GetValue("text").ToString());
 
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
                 {

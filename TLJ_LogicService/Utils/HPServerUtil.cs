@@ -370,6 +370,11 @@ public class HPServerUtil
                 {
                     NetRespond_GetPVPGameRoom.doAskCilentReq_GetPVPGameRoom(receiveObj.m_connId, text);
                 }
+                // 获取排行榜数据
+                else if (tag.CompareTo(Consts.Tag_GetRank) == 0)
+                {
+                    NetRespond_GetRank.doAskCilentReq_GetRank(receiveObj.m_connId, text);
+                }
                 else
                 {
                     LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
