@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using TLJCommon;
 
 public class MySqlServerUtil
@@ -30,8 +31,11 @@ public class MySqlServerUtil
 
     public void start()
     {
-        Thread thread = new Thread(connectinInThread);
-        thread.Start();
+        //Thread thread = new Thread(connectinInThread);
+        //thread.Start();
+
+        Task t = new Task(() => { connectinInThread(); });
+        t.Start();
     }
 
     void connectinInThread()

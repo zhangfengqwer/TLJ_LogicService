@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using TLJCommon;
 
 public class HPServerUtil
@@ -177,8 +178,11 @@ public class HPServerUtil
                     for (int i = 0; i < list.Count; i++)
                     {
                         ReceiveObj obj = new ReceiveObj(connId, list[i]);
-                        Thread thread = new Thread(doAskCilentReq);
-                        thread.Start(obj);
+                        //Thread thread = new Thread(doAskCilentReq);
+                        //thread.Start(obj);
+
+                        Task t = new Task(() => { doAskCilentReq(obj); });
+                        t.Start();
                     }
 
                     //text = "";
@@ -189,8 +193,11 @@ public class HPServerUtil
                     for (int i = 0; i < list.Count - 1; i++)
                     {
                         ReceiveObj obj = new ReceiveObj(connId, list[i]);
-                        Thread thread = new Thread(doAskCilentReq);
-                        thread.Start(obj);
+                        //Thread thread = new Thread(doAskCilentReq);
+                        //thread.Start(obj);
+
+                        Task t = new Task(() => { doAskCilentReq(obj); });
+                        t.Start();
                     }
 
                     m_endStr = list[list.Count - 1];
