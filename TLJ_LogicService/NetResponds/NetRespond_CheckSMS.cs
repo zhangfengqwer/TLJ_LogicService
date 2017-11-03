@@ -66,7 +66,12 @@ class NetRespond_CheckSMS
                 // 绑定手机号成功，奖励金币2000
                 if (code == (int)TLJCommon.Consts.Code.Code_OK)
                 {
-                    Request_SendMailToUser.doRequest(uid, "绑定手机号", "恭喜您成功绑定手机号，奖励金币2000", "1:2000");
+                    
+                    int isFirst = int.Parse(jo.GetValue("isFirst").ToString());
+                    if (isFirst == 1)
+                    {
+                        Request_SendMailToUser.doRequest(uid, "绑定手机号", "恭喜您成功绑定手机号，奖励金币2000", "1:2000");
+                    }
                 }
             }
 

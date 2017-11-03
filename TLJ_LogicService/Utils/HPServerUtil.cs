@@ -38,7 +38,7 @@ public class HPServerUtil
 
         //// 设置包头标识,与对端设置保证一致性
         //m_tcpServer.PackHeaderFlag = 0xff;
-        //// 设置最大封包大小
+        // 设置最大封包大小
         //m_tcpServer.MaxPackSize = 0x1000;
     }
 
@@ -93,8 +93,10 @@ public class HPServerUtil
     public void sendMessage(IntPtr connId, string text)
     {
         // 增加数据包尾部标识
-        byte[] bytes = new byte[1024];
-        bytes = Encoding.UTF8.GetBytes(text + m_packEndFlag);
+        //byte[] bytes = new byte[1024 * 10];
+        //bytes = Encoding.UTF8.GetBytes(text + m_packEndFlag);
+
+        byte[] bytes = Encoding.UTF8.GetBytes(text + m_packEndFlag);
 
         if (m_tcpServer.Send(connId, bytes, bytes.Length))
         {
@@ -166,6 +168,7 @@ public class HPServerUtil
         {
             string text = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             LogUtil.getInstance().addDebugLog("收到客户端原始消息：" + text);
+
             {
                 text = m_endStr + text;
                 text = text.Replace("\r\n", "");

@@ -26,7 +26,7 @@ public class MySqlServerUtil
         // 设置包头标识,与对端设置保证一致性
         m_tcpClient.PackHeaderFlag = 0xff;
         // 设置最大封包大小
-        m_tcpClient.MaxPackSize = 0x1000;
+        m_tcpClient.MaxPackSize = 0x2000;
     }
 
     public void start()
