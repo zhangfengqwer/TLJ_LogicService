@@ -360,6 +360,11 @@ public class HPServerUtil
                 {
                     NetRespond_UseLaBa.doAskCilentReq_UseLaBa(receiveObj.m_connId, text);
                 }
+                // 兑换话费
+                else if (tag.CompareTo(Consts.Tag_UseHuaFei) == 0)
+                {
+                    NetRespond_UseHuaFei.doAskCilentReq_UseHuaFei(receiveObj.m_connId, text);
+                }
                 // 实名认证
                 else if (tag.CompareTo(Consts.Tag_RealName) == 0)
                 {

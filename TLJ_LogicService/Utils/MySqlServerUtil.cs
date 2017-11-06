@@ -208,6 +208,11 @@ public class MySqlServerUtil
         {
             NetRespond_UseLaBa.onMySqlRespond(connId, str);
         }
+        // 兑换话费
+        else if (tag.CompareTo(Consts.Tag_UseHuaFei) == 0)
+        {
+            NetRespond_UseHuaFei.onMySqlRespond(connId, str);
+        }
         // 实名认证
         else if (tag.CompareTo(Consts.Tag_RealName) == 0)
         {
