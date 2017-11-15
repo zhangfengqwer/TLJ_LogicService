@@ -6,9 +6,9 @@ using System.Text;
 using TLJ_LogicService;
 
 
-class NetRespond_UserInfo
+class NetRespond_WeChat_UserInfo
 {
-    public static string doAskCilentReq_UserInfo(IntPtr connId, string reqData)
+    public static string doAskCilentReq_WeChat_UserInfo(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -17,8 +17,6 @@ class NetRespond_UserInfo
             JObject jo = JObject.Parse(reqData);
             string tag = jo.GetValue("tag").ToString();
             string uid = jo.GetValue("uid").ToString();
-
-            ClientManager.getInstance().setClientUID(connId, uid);
 
             respondJO.Add("tag", tag);
 

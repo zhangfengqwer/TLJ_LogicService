@@ -238,6 +238,26 @@ public class MySqlServerUtil
         {
             NetRespond_GetRank.onMySqlRespond(connId, str);
         }
+        // 改变玩家财富
+        else if (tag.CompareTo(Consts.Tag_ChangeUserWealth) == 0)
+        {
+            NetRespond_ChangeUserWealth.onMySqlRespond(connId, str);
+        }
+        // 微信公众号获取玩家数据
+        else if (tag.CompareTo(Consts.Tag_WeChat_UserInfo) == 0)
+        {
+            NetRespond_WeChat_UserInfo.onMySqlRespond(connId, str);
+        }
+        // 购买元宝
+        else if (tag.CompareTo(Consts.Tag_BuyYuanBao) == 0)
+        {
+            NetRespond_BuyYuanBao.onMySqlRespond(connId, str);
+        }
+        // 设置二级密码（徽章密码）
+        else if (tag.CompareTo(Consts.Tag_SetSecondPSW) == 0)
+        {
+            NetRespond_SetSecondPSW.onMySqlRespond(connId, str);
+        }
         else
         {
             LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

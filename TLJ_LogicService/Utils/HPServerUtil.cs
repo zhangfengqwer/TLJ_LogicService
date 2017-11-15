@@ -57,7 +57,8 @@ public class HPServerUtil
     {
         try
         {
-            m_tcpServer.IpAddress = NetConfig.s_logicService_ip;
+            //m_tcpServer.IpAddress = NetConfig.s_logicService_ip;
+            m_tcpServer.IpAddress = "0.0.0.0";
             m_tcpServer.Port = (ushort)NetConfig.s_logicService_port;
 
             // 启动服务
@@ -118,6 +119,7 @@ public class HPServerUtil
     {
         ++m_onlineCount;
         m_allIntPtr.Add(connId);
+        ClientManager.getInstance().addClient(connId);
 
         // 获取客户端ip和端口
         string ip = string.Empty;
@@ -222,6 +224,8 @@ public class HPServerUtil
             --m_onlineCount;
             m_allIntPtr.Remove(connId);
         }
+
+        ClientManager.getInstance().deleteClientByConnId(connId);
 
         LogUtil.getInstance().addDebugLog("与客户端断开:" + connId);
 
@@ -389,6 +393,31 @@ public class HPServerUtil
                 else if (tag.CompareTo(Consts.Tag_GetRank) == 0)
                 {
                     NetRespond_GetRank.doAskCilentReq_GetRank(receiveObj.m_connId, text);
+                }
+                // 检查是否有人已经登录这个账号
+                else if (tag.CompareTo(Consts.Tag_CheckRepeatLogin) == 0)
+                {
+                    NetRespond_CheckRepeatLogin.doAskCilentReq_CheckRepeatLogin(receiveObj.m_connId, text);
+                }
+                // 改变玩家财富
+                else if (tag.CompareTo(Consts.Tag_ChangeUserWealth) == 0)
+                {
+                    NetRespond_ChangeUserWealth.doAskCilentReq_ChangeUserWealth(receiveObj.m_connId, text);
+                }
+                // 微信公众号获取玩家数据
+                else if (tag.CompareTo(Consts.Tag_WeChat_UserInfo) == 0)
+                {
+                    NetRespond_WeChat_UserInfo.doAskCilentReq_WeChat_UserInfo(receiveObj.m_connId, text);
+                }
+                // 购买元宝
+                else if (tag.CompareTo(Consts.Tag_BuyYuanBao) == 0)
+                {
+                    NetRespond_BuyYuanBao.doAskCilentReq_BuyYuanBao(receiveObj.m_connId, text);
+                }
+                // 设置二级密码（徽章密码）
+                else if (tag.CompareTo(Consts.Tag_SetSecondPSW) == 0)
+                {
+                    NetRespond_SetSecondPSW.doAskCilentReq_SetSecondPSW(receiveObj.m_connId, text);
                 }
                 else
                 {

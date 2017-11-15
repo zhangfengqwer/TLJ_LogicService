@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-
-class NetRespond_UserInfo
+class NetRespond_BuyYuanBao
 {
-    public static string doAskCilentReq_UserInfo(IntPtr connId, string reqData)
+    public static string doAskCilentReq_BuyYuanBao(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -18,19 +17,12 @@ class NetRespond_UserInfo
             string tag = jo.GetValue("tag").ToString();
             string uid = jo.GetValue("uid").ToString();
 
-            ClientManager.getInstance().setClientUID(connId, uid);
-
-            respondJO.Add("tag", tag);
+            respondJO = jo;
+            respondJO.Add("connId", connId.ToInt32());
 
             // 传给数据库服务器
             {
-                JObject temp = new JObject();
-                temp.Add("tag", tag);
-                temp.Add("connId", connId.ToInt32());
-
-                temp.Add("uid", uid);
-
-                if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
+                if (!LogicService.m_mySqlServerUtil.sendMseeage(respondJO.ToString()))
                 {
                     // 连接不上数据库服务器，通知客户端
                     {
@@ -50,8 +42,7 @@ class NetRespond_UserInfo
             // 发送给客户端
             LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
         }
-
-        //return respondJO.ToString();
+        
         return "";
     }
 
@@ -59,20 +50,18 @@ class NetRespond_UserInfo
     {
         try
         {
-            // 发送给客户端
-            {
-                LogicService.m_serverUtil.sendMessage((IntPtr)connId, respondData);
-            }
+            JObject jo = JObject.Parse(respondData);
+            string uid = jo.GetValue("uid").ToString();
+
+            // 发送给web服务器
+            LogicService.m_serverUtil.sendMessage((IntPtr)connId, respondData);
+
+            // 发送给玩家
+            LogicService.m_serverUtil.sendMessage(ClientManager.getInstance().getClientByUID(uid).m_connId, respondData);
         }
         catch (Exception ex)
         {
             LogUtil.getInstance().addDebugLog(ex.Message);
-
-            // 客户端参数错误
-            //respondJO.Add("code", Convert.ToInt32(TLJCommon.Consts.Code.Code_ParamError));
-
-            // 发送给客户端
-            //LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
         }
     }
 }
