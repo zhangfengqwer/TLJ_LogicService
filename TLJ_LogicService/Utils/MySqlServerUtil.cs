@@ -50,6 +50,18 @@ public class MySqlServerUtil
         m_isConnecting = true;
         LogUtil.getInstance().addDebugLog("连接数据库服务器成功");
 
+        {
+            // 数据清空
+            {
+                GetTurntableDataScript.getInstance().clear();
+            }
+
+            {
+                // 获取转盘数据
+                Request_GetTurntable.doRequest();
+            }
+        }
+
         return;
     }
 
@@ -257,6 +269,31 @@ public class MySqlServerUtil
         else if (tag.CompareTo(Consts.Tag_SetSecondPSW) == 0)
         {
             NetRespond_SetSecondPSW.onMySqlRespond(connId, str);
+        }
+        // 获取转盘数据
+        else if (tag.CompareTo(Consts.Tag_GetTurntable) == 0)
+        {
+            Request_GetTurntable.onMySqlRespond(str);
+        }
+        // 使用转盘
+        else if (tag.CompareTo(Consts.Tag_UseTurntable) == 0)
+        {
+            NetRespond_UseTurntable.onMySqlRespond(connId, str);
+        }
+        // 校验徽章密码(与Login接口共用)
+        else if (tag.CompareTo(Consts.Tag_Login) == 0)
+        {
+            NetRespond_CheckSecondPSW.onMySqlRespond(connId, str);
+        }
+        // 修改头像
+        else if (tag.CompareTo(Consts.Tag_ChangeHead) == 0)
+        {
+            NetRespond_ChangeHead.onMySqlRespond(connId, str);
+        }
+        // 发放救济金
+        else if (tag.CompareTo(Consts.Tag_SupplyGold) == 0)
+        {
+            NetRespond_SupplyGold.onMySqlRespond(str);
         }
         else
         {

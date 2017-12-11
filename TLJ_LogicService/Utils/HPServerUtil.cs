@@ -419,6 +419,31 @@ public class HPServerUtil
                 {
                     NetRespond_SetSecondPSW.doAskCilentReq_SetSecondPSW(receiveObj.m_connId, text);
                 }
+                // 获取转盘数据
+                else if (tag.CompareTo(Consts.Tag_GetTurntable) == 0)
+                {
+                    NetRespond_GetTurntable.doAskCilentReq_GetTurntable(receiveObj.m_connId, text);
+                }
+                // 使用转盘
+                else if (tag.CompareTo(Consts.Tag_UseTurntable) == 0)
+                {
+                    NetRespond_UseTurntable.doAskCilentReq_UseTurntable(receiveObj.m_connId, text);
+                }
+                // 校验徽章密码(与Login接口共用)
+                else if (tag.CompareTo(Consts.Tag_Login) == 0)
+                {
+                    NetRespond_CheckSecondPSW.doAskCilentReq_CheckSecondPSW(receiveObj.m_connId, text);
+                }
+                // 客户端提交完成任务id
+                else if (tag.CompareTo(Consts.Tag_ProgressTask) == 0)
+                {
+                    NetRespond_ProgressTask.doAskCilentReq_ProgressTask(receiveObj.m_connId, text);
+                }
+                // 修改头像
+                else if (tag.CompareTo(Consts.Tag_ChangeHead) == 0)
+                {
+                    NetRespond_ChangeHead.doAskCilentReq_ChangeHead(receiveObj.m_connId, text);
+                }
                 else
                 {
                     LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

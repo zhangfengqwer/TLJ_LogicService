@@ -21,7 +21,12 @@ namespace TLJ_LogicService
 
         protected override void OnStart(string[] args)
         {
-            LogUtil.getInstance().start("C:\\Users\\Administrator\\Desktop\\TLJ_LogicServiceLog");
+            if (!OtherConfig.init())
+            {
+                return;
+            }
+
+            LogUtil.getInstance().start(OtherConfig.s_logPath + "TLJ_LogicServiceLog");
 
             if (!NetConfig.init())
             {

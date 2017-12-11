@@ -58,6 +58,15 @@
     <Compile Include="Commons\ClientManager.cs" />
     <Compile Include="Commons\CommonUtil.cs" />
     <Compile Include="Commons\NetConfig.cs" />
+    <Compile Include="Commons\OtherConfig.cs" />
+    <Compile Include="Commons\RandomName.cs" />
+    <Compile Include="Data\GetTurntableDataScript.cs" />
+    <Compile Include="NetResponds\NetRespond_SupplyGold.cs" />
+    <Compile Include="NetResponds\NetRespond_ChangeHead.cs" />
+    <Compile Include="NetResponds\NetRespond_ProgressTask.cs" />
+    <Compile Include="NetResponds\NetRespond_CheckSecondPSW.cs" />
+    <Compile Include="NetResponds\NetRespond_UseTurntable.cs" />
+    <Compile Include="NetResponds\NetRespond_GetTurntable.cs" />
     <Compile Include="NetResponds\NetRespond_SetSecondPSW.cs" />
     <Compile Include="NetResponds\NetRespond_BuyYuanBao.cs" />
     <Compile Include="NetResponds\NetRespond_ChangeUserWealth.cs" />
@@ -102,10 +111,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\Request_ChangeUserWealth.cs" />
+    <Compile Include="Request\Request_GetTurntable.cs" />
+    <Compile Include="Request\Request_ProgressTask.cs" />
     <Compile Include="Request\Request_SendMailToUser.cs" />
     <Compile Include="Utils\HPServerUtil.cs" />
     <Compile Include="Utils\LogUtil.cs" />
     <Compile Include="Utils\MySqlServerUtil.cs" />
+    <Compile Include="Utils\RandomUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

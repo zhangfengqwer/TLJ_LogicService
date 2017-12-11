@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-class NetRespond_BuyGoods
+class NetRespond_ChangeHead
 {
-    public static string doAskCilentReq_BuyGoods(IntPtr connId, string reqData)
+    public static string doAskCilentReq_ChangeHead(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
@@ -26,9 +26,7 @@ class NetRespond_BuyGoods
                 temp.Add("connId", connId.ToInt32());
 
                 temp.Add("uid", uid);
-                temp.Add("goods_id", (int)jo.GetValue("goods_id"));
-                temp.Add("goods_num", (int)jo.GetValue("goods_num"));
-                temp.Add("money_type", (int)jo.GetValue("money_type"));
+                temp.Add("head", (int)jo.GetValue("head"));
 
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(temp.ToString()))
                 {
