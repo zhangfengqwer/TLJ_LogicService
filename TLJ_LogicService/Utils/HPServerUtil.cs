@@ -14,7 +14,7 @@ public class HPServerUtil
 {
     //TcpPackServer m_tcpServer = new TcpPackServer();
     TcpServer m_tcpServer = new TcpServer();
-    
+
     // 数据包尾部标识
     char m_packEndFlag = (char)1;
     string m_endStr = "";
