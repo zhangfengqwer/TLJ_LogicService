@@ -94,19 +94,46 @@ public class HPServerUtil
     public void sendMessage(IntPtr connId, string text)
     {
         // 增加数据包尾部标识
-        //byte[] bytes = new byte[1024 * 10];
-        //bytes = Encoding.UTF8.GetBytes(text + m_packEndFlag);
+        //        byte[] bytes = new byte[1024];
+        //        bytes = Encoding.UTF8.GetBytes(text + m_packEndFlag);
+        SendData(connId, text);
 
-        byte[] bytes = Encoding.UTF8.GetBytes(text + m_packEndFlag);
+        //        byte[] data = SendData(text);
+        //        if (m_tcpServer.Send(connId, data, data.Length))
+        //        {
+        //            LogUtil.getInstance().addDebugLog("发送消息给客户端：" + text);
+        //        }
+        //        else
+        //        {
+        //            Debug.WriteLine("发送给客户端失败:" + text);
+        //        }
+    }
 
-        if (m_tcpServer.Send(connId, bytes, bytes.Length))
+    private void SendData(IntPtr connId, string data)
+    {
+        byte[] bytes = Encoding.UTF8.GetBytes(data);
+        byte[] len = BitConverter.GetBytes((ushort)bytes.Length);
+        byte[] flag = BitConverter.GetBytes(m_packEndFlag);
+        byte[] sendBytes = CombineBytes(flag, CombineBytes(len, bytes));
+
+        LogUtil.getInstance().addDebugLog($"发送数据长度：{sendBytes.Length},body:{bytes.Length},flag:{flag.Length},data:{data}");
+
+        if (m_tcpServer.Send(connId, sendBytes, sendBytes.Length))
         {
-            LogUtil.getInstance().addDebugLog("发送消息给客户端：" + text);
+            LogUtil.getInstance().addDebugLog("发送消息给客户端：" + data);
         }
         else
         {
-            Debug.WriteLine("发送给客户端失败:" + text);
+            Debug.WriteLine("发送给客户端失败:" + data);
         }
+    }
+
+    private byte[] CombineBytes(byte[] data1, byte[] data2)
+    {
+        byte[] data = new byte[data1.Length + data2.Length];
+        Buffer.BlockCopy(data1, 0, data, 0, data1.Length); //这种方法仅适用于字节数组
+        Buffer.BlockCopy(data2, 0, data, data1.Length, data2.Length);
+        return data;
     }
 
     HandleResult OnPrepareListen(IntPtr soListen)
