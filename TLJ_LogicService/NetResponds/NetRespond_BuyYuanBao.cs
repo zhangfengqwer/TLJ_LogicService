@@ -54,7 +54,10 @@ class NetRespond_BuyYuanBao
             string uid = jo.GetValue("uid").ToString();
 
             // 发送给web服务器
-            LogicService.m_serverUtil.sendMessage((IntPtr)connId, respondData);
+            if (connId >= 0)
+            {
+                LogicService.m_serverUtil.sendMessage((IntPtr)connId, respondData);
+            }
 
             // 发送给玩家
             LogicService.m_serverUtil.sendMessage(ClientManager.getInstance().getClientByUID(uid).m_connId, respondData);
