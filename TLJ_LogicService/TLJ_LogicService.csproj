@@ -61,6 +61,7 @@
     <Compile Include="Commons\OtherConfig.cs" />
     <Compile Include="Commons\RandomName.cs" />
     <Compile Include="Data\GetTurntableDataScript.cs" />
+    <Compile Include="NetResponds\NetRespond_IOS_Pay.cs" />
     <Compile Include="NetResponds\NetRespond_SupplyGold.cs" />
     <Compile Include="NetResponds\NetRespond_ChangeHead.cs" />
     <Compile Include="NetResponds\NetRespond_ProgressTask.cs" />

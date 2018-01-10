@@ -471,6 +471,11 @@ public class HPServerUtil
                 {
                     NetRespond_ChangeHead.doAskCilentReq_ChangeHead(receiveObj.m_connId, text);
                 }
+                // ios支付
+                else if (tag.CompareTo(Consts.Tag_IOS_Pay) == 0)
+                {
+                    NetRespond_IOS_Pay.doAskCilentReq_IOS_Pay(receiveObj.m_connId, text);
+                }
                 else
                 {
                     LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

@@ -128,176 +128,190 @@ public class MySqlServerUtil
 
     HandleResult OnReceive(TcpClient sender, byte[] bytes)
     {
-        string str = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-        LogUtil.getInstance().addDebugLog("收到数据库服务器消息:" + str);
+        try
+        {
+            string str = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+            LogUtil.getInstance().addDebugLog("收到数据库服务器消息:" + str);
 
-        JObject jo = JObject.Parse(str);
-        string tag = jo.GetValue("tag").ToString();
-        int connId = Convert.ToInt32(jo.GetValue("connId"));
+            JObject jo = JObject.Parse(str);
+            string tag = jo.GetValue("tag").ToString();
+            int connId = Convert.ToInt32(jo.GetValue("connId"));
 
-        // 请求签到数据接口
-        if (tag.CompareTo(Consts.Tag_GetSignRecord) == 0)
-        {
-            NetRespond_GetSignRecord.onMySqlRespond(connId, str);
+            // 请求签到数据接口
+            if (tag.CompareTo(Consts.Tag_GetSignRecord) == 0)
+            {
+                NetRespond_GetSignRecord.onMySqlRespond(connId, str);
+            }
+            // 签到接口
+            else if (tag.CompareTo(Consts.Tag_Sign) == 0)
+            {
+                NetRespond_Sign.onMySqlRespond(connId, str);
+            }
+            // 获取用户信息接口
+            else if (tag.CompareTo(Consts.Tag_UserInfo) == 0)
+            {
+                NetRespond_UserInfo.onMySqlRespond(connId, str);
+            }
+            // 获取用户邮箱数据
+            else if (tag.CompareTo(Consts.Tag_GetMail) == 0)
+            {
+                NetRespond_GetMail.onMySqlRespond(connId, str);
+            }
+            // 阅读邮件
+            else if (tag.CompareTo(Consts.Tag_ReadMail) == 0)
+            {
+                NetRespond_ReadMail.onMySqlRespond(connId, str);
+            }
+            // 删除邮件
+            else if (tag.CompareTo(Consts.Tag_DeleteMail) == 0)
+            {
+                NetRespond_DeleteMail.onMySqlRespond(connId, str);
+            }
+            // 一键读取所有邮件
+            else if (tag.CompareTo(Consts.Tag_OneKeyReadMail) == 0)
+            {
+                NetRespond_OneKeyReadMail.onMySqlRespond(connId, str);
+            }
+            // 一键删除所有邮件
+            else if (tag.CompareTo(Consts.Tag_OneKeyDeleteMail) == 0)
+            {
+                NetRespond_OneKeyDeleteMail.onMySqlRespond(connId, str);
+            }
+            // 获取背包数据
+            else if (tag.CompareTo(Consts.Tag_GetBag) == 0)
+            {
+                NetRespond_GetBag.onMySqlRespond(connId, str);
+            }
+            // 使用道具
+            else if (tag.CompareTo(Consts.Tag_UseProp) == 0)
+            {
+                NetRespond_UseProp.onMySqlRespond(connId, str);
+            }
+            // 获取公告活动数据
+            else if (tag.CompareTo(Consts.Tag_GetNotice) == 0)
+            {
+                NetRespond_GetNotice.onMySqlRespond(connId, str);
+            }
+            // 阅读公告活动
+            else if (tag.CompareTo(Consts.Tag_ReadNotice) == 0)
+            {
+                NetRespond_ReadNotice.onMySqlRespond(connId, str);
+            }
+            // 获取商店数据
+            else if (tag.CompareTo(Consts.Tag_GetShop) == 0)
+            {
+                NetRespond_GetShop.onMySqlRespond(connId, str);
+            }
+            // 购买物品
+            else if (tag.CompareTo(Consts.Tag_BuyGoods) == 0)
+            {
+                NetRespond_BuyGoods.onMySqlRespond(connId, str);
+            }
+            // 获取任务数据
+            else if (tag.CompareTo(Consts.Tag_GetTask) == 0)
+            {
+                NetRespond_GetTask.onMySqlRespond(connId, str);
+            }
+            // 完成任务
+            else if (tag.CompareTo(Consts.Tag_CompleteTask) == 0)
+            {
+                NetRespond_CompleteTask.onMySqlRespond(connId, str);
+            }
+            // 使用喇叭
+            else if (tag.CompareTo(Consts.Tag_UseLaBa) == 0)
+            {
+                NetRespond_UseLaBa.onMySqlRespond(connId, str);
+            }
+            // 兑换话费
+            else if (tag.CompareTo(Consts.Tag_UseHuaFei) == 0)
+            {
+                NetRespond_UseHuaFei.onMySqlRespond(connId, str);
+            }
+            // 实名认证
+            else if (tag.CompareTo(Consts.Tag_RealName) == 0)
+            {
+                NetRespond_RealName.onMySqlRespond(connId, str);
+            }
+            // 发送验证码
+            else if (tag.CompareTo(Consts.Tag_SendSMS) == 0)
+            {
+                NetRespond_SendSMS.onMySqlRespond(connId, str);
+            }
+            // 校验验证码
+            else if (tag.CompareTo(Consts.Tag_CheckSMS) == 0)
+            {
+                NetRespond_CheckSMS.onMySqlRespond(connId, str);
+            }
+            // 获取pvp场次数据
+            else if (tag.CompareTo(Consts.Tag_GetPVPGameRoom) == 0)
+            {
+                NetRespond_GetPVPGameRoom.onMySqlRespond(connId, str);
+            }
+            // 获取排行榜数据
+            else if (tag.CompareTo(Consts.Tag_GetRank) == 0)
+            {
+                NetRespond_GetRank.onMySqlRespond(connId, str);
+            }
+            // 改变玩家财富
+            else if (tag.CompareTo(Consts.Tag_ChangeUserWealth) == 0)
+            {
+                NetRespond_ChangeUserWealth.onMySqlRespond(connId, str);
+            }
+            // 微信公众号获取玩家数据
+            else if (tag.CompareTo(Consts.Tag_WeChat_UserInfo) == 0)
+            {
+                NetRespond_WeChat_UserInfo.onMySqlRespond(connId, str);
+            }
+            // 购买元宝
+            else if (tag.CompareTo(Consts.Tag_BuyYuanBao) == 0)
+            {
+                NetRespond_BuyYuanBao.onMySqlRespond(connId, str);
+            }
+            // 设置二级密码（徽章密码）
+            else if (tag.CompareTo(Consts.Tag_SetSecondPSW) == 0)
+            {
+                NetRespond_SetSecondPSW.onMySqlRespond(connId, str);
+            }
+            // 获取转盘数据
+            else if (tag.CompareTo(Consts.Tag_GetTurntable) == 0)
+            {
+                Request_GetTurntable.onMySqlRespond(str);
+            }
+            // 使用转盘
+            else if (tag.CompareTo(Consts.Tag_UseTurntable) == 0)
+            {
+                NetRespond_UseTurntable.onMySqlRespond(connId, str);
+            }
+            // 校验徽章密码(与Login接口共用)
+            else if (tag.CompareTo(Consts.Tag_Login) == 0)
+            {
+                NetRespond_CheckSecondPSW.onMySqlRespond(connId, str);
+            }
+            // 修改头像
+            else if (tag.CompareTo(Consts.Tag_ChangeHead) == 0)
+            {
+                NetRespond_ChangeHead.onMySqlRespond(connId, str);
+            }
+            // 发放救济金
+            else if (tag.CompareTo(Consts.Tag_SupplyGold) == 0)
+            {
+                NetRespond_SupplyGold.onMySqlRespond(str);
+            }
+            // ios支付
+            else if (tag.CompareTo(Consts.Tag_IOS_Pay) == 0)
+            {
+                NetRespond_IOS_Pay.onMySqlRespond(connId, str);
+            }
+            else
+            {
+                LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
+            }
+
+            return HandleResult.Ok;
         }
-        // 签到接口
-        else if(tag.CompareTo(Consts.Tag_Sign) == 0)
+        catch (Exception ex)
         {
-            NetRespond_Sign.onMySqlRespond(connId, str);
-        }
-        // 获取用户信息接口
-        else if (tag.CompareTo(Consts.Tag_UserInfo) == 0)
-        {
-            NetRespond_UserInfo.onMySqlRespond(connId, str);
-        }
-        // 获取用户邮箱数据
-        else if (tag.CompareTo(Consts.Tag_GetMail) == 0)
-        {
-            NetRespond_GetMail.onMySqlRespond(connId, str);
-        }
-        // 阅读邮件
-        else if (tag.CompareTo(Consts.Tag_ReadMail) == 0)
-        {
-            NetRespond_ReadMail.onMySqlRespond(connId, str);
-        }
-        // 删除邮件
-        else if (tag.CompareTo(Consts.Tag_DeleteMail) == 0)
-        {
-            NetRespond_DeleteMail.onMySqlRespond(connId, str);
-        }
-        // 一键读取所有邮件
-        else if (tag.CompareTo(Consts.Tag_OneKeyReadMail) == 0)
-        {
-            NetRespond_OneKeyReadMail.onMySqlRespond(connId, str);
-        }
-        // 一键删除所有邮件
-        else if (tag.CompareTo(Consts.Tag_OneKeyDeleteMail) == 0)
-        {
-            NetRespond_OneKeyDeleteMail.onMySqlRespond(connId, str);
-        }
-        // 获取背包数据
-        else if (tag.CompareTo(Consts.Tag_GetBag) == 0)
-        {
-            NetRespond_GetBag.onMySqlRespond(connId, str);
-        }
-        // 使用道具
-        else if (tag.CompareTo(Consts.Tag_UseProp) == 0)
-        {
-            NetRespond_UseProp.onMySqlRespond(connId, str);
-        }
-        // 获取公告活动数据
-        else if (tag.CompareTo(Consts.Tag_GetNotice) == 0)
-        {
-            NetRespond_GetNotice.onMySqlRespond(connId, str);
-        }
-        // 阅读公告活动
-        else if (tag.CompareTo(Consts.Tag_ReadNotice) == 0)
-        {
-            NetRespond_ReadNotice.onMySqlRespond(connId, str);
-        }
-        // 获取商店数据
-        else if (tag.CompareTo(Consts.Tag_GetShop) == 0)
-        {
-            NetRespond_GetShop.onMySqlRespond(connId, str);
-        }
-        // 购买物品
-        else if (tag.CompareTo(Consts.Tag_BuyGoods) == 0)
-        {
-            NetRespond_BuyGoods.onMySqlRespond(connId, str);
-        }
-        // 获取任务数据
-        else if (tag.CompareTo(Consts.Tag_GetTask) == 0)
-        {
-            NetRespond_GetTask.onMySqlRespond(connId, str);
-        }
-        // 完成任务
-        else if (tag.CompareTo(Consts.Tag_CompleteTask) == 0)
-        {
-            NetRespond_CompleteTask.onMySqlRespond(connId, str);
-        }
-        // 使用喇叭
-        else if (tag.CompareTo(Consts.Tag_UseLaBa) == 0)
-        {
-            NetRespond_UseLaBa.onMySqlRespond(connId, str);
-        }
-        // 兑换话费
-        else if (tag.CompareTo(Consts.Tag_UseHuaFei) == 0)
-        {
-            NetRespond_UseHuaFei.onMySqlRespond(connId, str);
-        }
-        // 实名认证
-        else if (tag.CompareTo(Consts.Tag_RealName) == 0)
-        {
-            NetRespond_RealName.onMySqlRespond(connId, str);
-        }
-        // 发送验证码
-        else if (tag.CompareTo(Consts.Tag_SendSMS) == 0)
-        {
-            NetRespond_SendSMS.onMySqlRespond(connId, str);
-        }
-        // 校验验证码
-        else if (tag.CompareTo(Consts.Tag_CheckSMS) == 0)
-        {
-            NetRespond_CheckSMS.onMySqlRespond(connId, str);
-        }
-        // 获取pvp场次数据
-        else if (tag.CompareTo(Consts.Tag_GetPVPGameRoom) == 0)
-        {
-            NetRespond_GetPVPGameRoom.onMySqlRespond(connId, str);
-        }
-        // 获取排行榜数据
-        else if (tag.CompareTo(Consts.Tag_GetRank) == 0)
-        {
-            NetRespond_GetRank.onMySqlRespond(connId, str);
-        }
-        // 改变玩家财富
-        else if (tag.CompareTo(Consts.Tag_ChangeUserWealth) == 0)
-        {
-            NetRespond_ChangeUserWealth.onMySqlRespond(connId, str);
-        }
-        // 微信公众号获取玩家数据
-        else if (tag.CompareTo(Consts.Tag_WeChat_UserInfo) == 0)
-        {
-            NetRespond_WeChat_UserInfo.onMySqlRespond(connId, str);
-        }
-        // 购买元宝
-        else if (tag.CompareTo(Consts.Tag_BuyYuanBao) == 0)
-        {
-            NetRespond_BuyYuanBao.onMySqlRespond(connId, str);
-        }
-        // 设置二级密码（徽章密码）
-        else if (tag.CompareTo(Consts.Tag_SetSecondPSW) == 0)
-        {
-            NetRespond_SetSecondPSW.onMySqlRespond(connId, str);
-        }
-        // 获取转盘数据
-        else if (tag.CompareTo(Consts.Tag_GetTurntable) == 0)
-        {
-            Request_GetTurntable.onMySqlRespond(str);
-        }
-        // 使用转盘
-        else if (tag.CompareTo(Consts.Tag_UseTurntable) == 0)
-        {
-            NetRespond_UseTurntable.onMySqlRespond(connId, str);
-        }
-        // 校验徽章密码(与Login接口共用)
-        else if (tag.CompareTo(Consts.Tag_Login) == 0)
-        {
-            NetRespond_CheckSecondPSW.onMySqlRespond(connId, str);
-        }
-        // 修改头像
-        else if (tag.CompareTo(Consts.Tag_ChangeHead) == 0)
-        {
-            NetRespond_ChangeHead.onMySqlRespond(connId, str);
-        }
-        // 发放救济金
-        else if (tag.CompareTo(Consts.Tag_SupplyGold) == 0)
-        {
-            NetRespond_SupplyGold.onMySqlRespond(str);
-        }
-        else
-        {
-            LogUtil.getInstance().addDebugLog("未知Tag：" + tag);
+            LogUtil.getInstance().addDebugLog("MySqlServerUtil.OnReceive异常:" + ex.Message);
         }
 
         return HandleResult.Ok;
