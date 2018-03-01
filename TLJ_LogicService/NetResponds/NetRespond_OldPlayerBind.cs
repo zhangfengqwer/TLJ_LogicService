@@ -5,26 +5,33 @@ using System.Linq;
 using System.Text;
 using TLJ_LogicService;
 
-class NetRespond_ChangeUserWealth
+class NetRespond_OldPlayerBind
 {
-    public static string doAskCilentReq_ChangeUserWealth(IntPtr connId, string reqData)
+    public static string doAskCilentReq_OldPlayerBind(IntPtr connId, string reqData)
     {
         JObject respondJO = new JObject();
 
         try
         {
             JObject jo = JObject.Parse(reqData);
-            string tag = jo.GetValue("tag").ToString();
+            
+            respondJO.Add("tag", jo.GetValue("tag"));
 
-            string account = jo.GetValue("account").ToString();
-            string password = jo.GetValue("password").ToString();
+            // 传给数据库服务器
+            {
+                jo.Add("connId", connId.ToInt32());
 
-            string uid = jo.GetValue("uid").ToString();
-            int reward_id = (int)jo.GetValue("reward_id");
-            int reward_num = (int)jo.GetValue("reward_num");
-            string reason = jo.GetValue("reason").ToString();
+                if (!LogicService.m_mySqlServerUtil.sendMseeage(jo.ToString()))
+                {
+                    // 连接不上数据库服务器，通知客户端
+                    {
+                        respondJO.Add("code", Convert.ToInt32(TLJCommon.Consts.Code.Code_MySqlError));
 
-            Request_ChangeUserWealth.doRequest(connId,account, password, uid, reward_id, reward_num, reason);
+                        // 发送给客户端
+                        LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
+                    }
+                }
+            }
         }
         catch (Exception ex)
         {

@@ -61,6 +61,10 @@
     <Compile Include="Commons\OtherConfig.cs" />
     <Compile Include="Commons\RandomName.cs" />
     <Compile Include="Data\GetTurntableDataScript.cs" />
+    <Compile Include="NetResponds\NetRespond_GetSignRecord_30.cs" />
+    <Compile Include="NetResponds\NetRespond_Sign_30.cs" />
+    <Compile Include="NetResponds\NetRespond_GetSignReward_30.cs" />
+    <Compile Include="NetResponds\NetRespond_OldPlayerBind.cs" />
     <Compile Include="NetResponds\NetRespond_IOS_Pay.cs" />
     <Compile Include="NetResponds\NetRespond_SupplyGold.cs" />
     <Compile Include="NetResponds\NetRespond_ChangeHead.cs" />

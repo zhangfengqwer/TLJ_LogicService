@@ -9,6 +9,7 @@ class NetRespond_GetTurntable
 {
     public static string doAskCilentReq_GetTurntable(IntPtr connId, string reqData)
     {
+
         JObject respondJO = new JObject();
 
         try
@@ -24,17 +25,37 @@ class NetRespond_GetTurntable
                 JObject temp = new JObject();
 
                 temp.Add("id", GetTurntableDataScript.getInstance().getDataList()[i].m_id);
-                temp.Add("reward", GetTurntableDataScript.getInstance().getDataList()[i].m_reward);
+
+                if ((bool)jo.GetValue("isIosCheck"))
+                {
+                    if (GetTurntableDataScript.getInstance().getDataList()[i].m_id == 4)
+                    {
+                        temp.Add("reward", "102:2");
+                    }
+                    else if (GetTurntableDataScript.getInstance().getDataList()[i].m_id == 10)
+                    {
+                        temp.Add("reward", "101:3");
+                    }
+                    else
+                    {
+                        temp.Add("reward", GetTurntableDataScript.getInstance().getDataList()[i].m_reward);
+                    }
+                }
+                else
+                {
+                    temp.Add("reward", GetTurntableDataScript.getInstance().getDataList()[i].m_reward);
+                }
+                
                 temp.Add("probability", GetTurntableDataScript.getInstance().getDataList()[i].m_probability);
 
                 ja.Add(temp);
             }
 
-            respondJO.Add("turntable_list",ja);
+            respondJO.Add("turntable_list", ja);
 
             // 发送给客户端
             LogicService.m_serverUtil.sendMessage(connId, respondJO.ToString());
-            
+
             {
                 for (int i = 0; i < GetTurntableDataScript.getInstance().m_noticeContentList.Count; i++)
                 {

@@ -21,16 +21,19 @@ namespace TLJ_LogicService
 
         protected override void OnStart(string[] args)
         {
-            if (!OtherConfig.init())
+            // 加载文件
             {
-                return;
-            }
+                if (!OtherConfig.init())
+                {
+                    return;
+                }
 
-            LogUtil.getInstance().start(OtherConfig.s_logPath + "TLJ_LogicServiceLog");
+                LogUtil.getInstance().start(OtherConfig.s_logPath + "TLJ_LogicServiceLog");
 
-            if (!NetConfig.init())
-            {
-                return;
+                if (!NetConfig.init())
+                {
+                    return;
+                }
             }
 
             m_serverUtil = new HPServerUtil();

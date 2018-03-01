@@ -476,6 +476,26 @@ public class HPServerUtil
                 {
                     NetRespond_IOS_Pay.doAskCilentReq_IOS_Pay(receiveObj.m_connId, text);
                 }
+                // 老用户绑定
+                else if (tag.CompareTo(Consts.Tag_OldPlayerBind) == 0)
+                {
+                    NetRespond_OldPlayerBind.doAskCilentReq_OldPlayerBind(receiveObj.m_connId, text);
+                }
+                // 获取30天签到数据
+                else if (tag.CompareTo(Consts.Tag_GetSignReward_30) == 0)
+                {
+                    NetRespond_GetSignReward_30.doAskCilentReq_GetSignReward_30(receiveObj.m_connId, text);
+                }
+                // 获取30天签到记录
+                else if (tag.CompareTo(Consts.Tag_GetSignRecord_30) == 0)
+                {
+                    NetRespond_GetSignReward_30.doAskCilentReq_GetSignReward_30(receiveObj.m_connId, text);
+                }
+                // 请求签到（月签的那种）
+                else if (tag.CompareTo(Consts.Tag_Sign_30) == 0)
+                {
+                    NetRespond_Sign_30.doAskCilentReq_Sign_30(receiveObj.m_connId, text);
+                }
                 else
                 {
                     LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

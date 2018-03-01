@@ -302,6 +302,26 @@ public class MySqlServerUtil
             {
                 NetRespond_IOS_Pay.onMySqlRespond(connId, str);
             }
+            // 老用户绑定
+            else if (tag.CompareTo(Consts.Tag_OldPlayerBind) == 0)
+            {
+                NetRespond_OldPlayerBind.onMySqlRespond(connId, str);
+            }
+            // 获取30天签到数据
+            else if (tag.CompareTo(Consts.Tag_GetSignReward_30) == 0)
+            {
+                NetRespond_GetSignReward_30.onMySqlRespond(connId, str);
+            }
+            // 获取30天签到记录
+            else if (tag.CompareTo(Consts.Tag_GetSignRecord_30) == 0)
+            {
+                NetRespond_GetSignRecord_30.onMySqlRespond(connId, str);
+            }
+            // 请求签到（月签的那种）
+            else if (tag.CompareTo(Consts.Tag_Sign_30) == 0)
+            {
+                NetRespond_Sign_30.onMySqlRespond(connId, str);
+            }
             else
             {
                 LogUtil.getInstance().addDebugLog("未知Tag：" + tag);

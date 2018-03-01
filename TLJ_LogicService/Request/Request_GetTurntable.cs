@@ -14,7 +14,8 @@ class Request_GetTurntable
             JObject respondJO = new JObject();
 
             respondJO.Add("tag", TLJCommon.Consts.Tag_GetTurntable);
-
+            respondJO.Add("isIosCheck", false);
+            
             // 传给数据库服务器
             {
                 if (!LogicService.m_mySqlServerUtil.sendMseeage(respondJO.ToString()))
